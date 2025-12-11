@@ -15,19 +15,6 @@ Full preprocessing, training, evaluation & analysis
 Academic discussion of failure modes, class imbalance, domain shift
 SDG-aligned justification (SDG-13 Climate Action, SDG-15 Life on Land)
 
-AISD-CW2/
-│
-├── AISD_CW2_partA.py                # Baseline replication (Amazon dataset, TF)
-│
-├── AISD_Indian_region_based.py      # Indian adaptation #1 (Semantic Drone Dataset)
-├── AISD_Indian_region_based.ipynb   # Executed notebook with validation tables
-│
-├── myaisd_cw2_part2.py              # Indian adaptation #2 (LandCover.ai, PyTorch)
-│
-├── AISD_CW2_partB.py                # Intended TF version for LandCover.ai (25-epoch run)
-├── AISD_CW2_partB.ipynb             # Notebook version (partial run due to GPU limits)
-│
-└── README.md                        # You are here
 
 ##1. *Baseline Replication – Amazon Forest Dataset*
 
@@ -50,6 +37,7 @@ Important note:
 The original paper reports slightly higher numbers, but their dataset is a curated version not fully matching the public Zenodo version.
 Your reproduction matches expected training dynamics and segmentation behaviour, which is the goal of replication.
 
+
 ##2. *Indian Context Challenge — Motivation & SDG Relevance*
 
 India faces rapid changes in forest cover, slope stability, and land use, especially in Himalayan regions like Uttarakhand (Joshimath).
@@ -58,6 +46,7 @@ SDG 13 – Climate Action (deforestation drives local warming, soil exposure, ha
 SDG 15 – Life on Land (ecosystems and biodiversity loss)
 SDG 11 – Sustainable Cities & Communities (hazard-resilient city planning)
 Since no pixel-level Indian ground-truth dataset exists publicly, the work uses proxy datasets that approximate Indian landscape characteristics.
+
 
 ##3. *Adaptation Pipeline #1 – Semantic Drone Dataset*
 
@@ -89,6 +78,7 @@ Pixel Accuracy: lower & unstable
 
 Performance shifts toward minority classes → expected outcome
 
+
 #*Interpretation* -
 
 The dataset is extremely imbalanced
@@ -96,6 +86,7 @@ Class weighting alone destabilises training
 This behaviour is academically valuable → shows limitations of naive adaptation
 Highlights need for advanced loss functions (Dice/Tversky), attention blocks, or deeper architectures
 This aligns with Task 5 – Evaluation & Failure Case Analysis.
+
 
 #4. *Adaptation Pipeline #2 – LandCover.ai (PyTorch)*
 
@@ -119,6 +110,7 @@ Stable validation mIoU across epochs
 Best model saved automatically
 Used as main quantitative evidence in the report since TF version hit GPU limits
 
+
 #*5. Adaptation Pipeline #3 – LandCover.ai (TensorFlow)*
 
 File: AISD_CW2_partB.py
@@ -133,13 +125,13 @@ The PyTorch file fulfills the completed experiment requirement
 
 This fully satisfies the coursework expectations for Task 4 & Task 5.
 
+
 6. *How to Run the Code*
 Dependencies
 
 All scripts run on Google Colab GPU.
 
 Install essentials:
-
 pip install tensorflow torch torchvision kaggle opencv-python scikit-learn rasterio
 
 Running the Baseline (Amazon)
@@ -151,13 +143,12 @@ Before running, set Kaggle credentials in a notebook cell:
 import os
 os.environ["KAGGLE_USERNAME"] = "<your_username>"
 os.environ["KAGGLE_KEY"] = "<your_api_key>"
-
 Then:
-
 python AISD_Indian_region_based.py
 
 Running Indian Adaptation #2 (LandCover.ai PyTorch)
 python myaisd_cw2_part2.py
+
 
 #*7. Reproducibility & GPU Constraints*
 
@@ -165,6 +156,7 @@ Several experiments required long GPU runtimes.
 Completed runs are stored in the .ipynb notebooks
 Hard-coded result tables represent actual outputs from completed runs
 GPU constraints are transparently documented in code comments
+
 
 #8. *Limitations & Future Work*
 Limitations
